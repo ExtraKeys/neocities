@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Deploying your docs - ExtraKeys</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.2.2, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../../../../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../../../../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../../../.." target="_blank" class="custom-link">ExtraKeys</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="">
+<a href="../../../..">Home</a>
+<li class="chapter" data-path="about/">
+<a href="../../../../about/">About</a>
+<li class="chapter" data-path="resources/">
+<a href="../../../../resources/">Resources</a>
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="deploying-your-docs">Deploying your docs</h1>
+<p>A basic guide to deploying your docs to various hosting providers</p>
+<hr />
+<h2 id="github-pages">GitHub Pages</h2>
+<p>If you host the source code for a project on <a href="https://github.com/">GitHub</a>, you can easily use
+<a href="https://pages.github.com/">GitHub Pages</a> to host the documentation for your project. There are two basic
+types of GitHub Pages sites: <a href="https://help.github.com/articles/user-organization-and-project-pages/#project-pages-sites">Project Pages</a> sites, and <a href="https://help.github.com/articles/user-organization-and-project-pages/#user-and-organization-pages-sites">User and Organization
+Pages</a> sites. They are nearly identical but have some important differences,
+which require a different work flow when deploying.</p>
+<h3 id="project-pages">Project Pages</h3>
+<p>Project Pages sites are simpler as the site files get deployed to a branch
+within the project repository (<code>gh-pages</code> by default). After you <code>checkout</code> the
+primary working branch (usually <code>master</code>) of the git repository where you
+maintain the source documentation for your project, run the following command:</p>
+<pre><code class="language-sh">mkdocs gh-deploy
+</code></pre>
+<p>That&rsquo;s it! Behind the scenes, MkDocs will build your docs and use the
+<a href="https://github.com/davisp/ghp-import">ghp-import</a> tool to commit them to the <code>gh-pages</code> branch and push the
+<code>gh-pages</code> branch to GitHub.</p>
+<p>Use <code>mkdocs gh-deploy --help</code> to get a full list of options available for the
+<code>gh-deploy</code> command.</p>
+<p>Be aware that you will not be able to review the built site before it is pushed
+to GitHub. Therefore, you may want to verify any changes you make to the docs
+beforehand by using the <code>build</code> or <code>serve</code> commands and reviewing the built
+files locally.</p>
+<p>!!! warning</p>
+<pre><code>You should never edit files in your pages repository by hand if you're using
+the `gh-deploy` command because you will lose your work the next time you
+run the command.
+</code></pre>
+<h3 id="organization-and-user-pages">Organization and User Pages</h3>
+<p>User and Organization Pages sites are not tied to a specific project, and the
+site files are deployed to the <code>master</code> branch in a dedicated repository named
+with the GitHub account name. Therefore, you need working copies of two
+repositories on our local system. For example, consider the following file
+structure:</p>
+<pre><code class="language-no-highlight">my-project/
+    mkdocs.yml
+    docs/
+orgname.github.io/
+</code></pre>
+<p>After making and verifying updates to your project you need to change
+directories to the <code>orgname.github.io</code> repository and call the
+<code>mkdocs gh-deploy</code> command from there:</p>
+<pre><code class="language-sh">cd ../orgname.github.io/
+mkdocs gh-deploy --config-file ../my-project/mkdocs.yml --remote-branch master
+</code></pre>
+<p>Note that you need to explicitly point to the <code>mkdocs.yml</code> configuration file as
+it is no longer in the current working directory. You also need to inform the
+deploy script to commit to the <code>master</code> branch. You may override the default
+with the <a href="../configuration/#remote_branch">remote_branch</a> configuration setting, but if you forget to change
+directories before running the deploy script, it will commit to the <code>master</code>
+branch of your project, which you probably don&rsquo;t want.</p>
+<p>Be aware that you will not be able to review the built site before it is pushed
+to GitHub. Therefore, you may want to verify any changes you make to the docs
+beforehand by using the <code>build</code> or <code>serve</code> commands and reviewing the built
+files locally.</p>
+<p>!!! warning</p>
+<pre><code>You should never edit files in your pages repository by hand if you're using
+the `gh-deploy` command because you will lose your work the next time you
+run the command.
+</code></pre>
+<h3 id="custom-domains">Custom Domains</h3>
+<p>GitHub Pages includes support for using a <a href="https://help.github.com/articles/adding-or-removing-a-custom-domain-for-your-github-pages-site">Custom Domain</a> for your site. In
+addition to the steps documented by GitHub, you need to take one additional step
+so that MkDocs will work with your custom domain. You need to add a <code>CNAME</code> file
+to the root of your <a href="../configuration/#docs_dir">docs_dir</a>. The file must contain a single bare domain or
+subdomain on a single line (see MkDocs&rsquo; own <a href="https://github.com/mkdocs/mkdocs/blob/master/docs/CNAME">CNAME file</a> as an example). You may
+create the file manually, or use GitHub&rsquo;s web interface to set up the custom
+domain (under Settings / Custom Domain). If you use the web interface, GitHub
+will create the <code>CNAME</code> file for you and save it to the root of your &ldquo;pages&rdquo;
+branch. So that the file does not get removed the next time you deploy, you need
+to copy the file to your <code>docs_dir</code>. With the file properly included in your
+<code>docs_dir</code>, MkDocs will include the file in your built site and push it to your
+&ldquo;pages&rdquo; branch each time you run the <code>gh-deploy</code> command.</p>
+<p>If you are having problems getting a custom domain to work, see GitHub&rsquo;s
+documentation on <a href="https://help.github.com/articles/troubleshooting-custom-domains/">Troubleshooting custom domains</a>.</p>
+<h2 id="read-the-docs">Read the Docs</h2>
+<p><a href="https://readthedocs.org/">Read the Docs</a> offers free documentation hosting. You can import your docs
+using any major version control system, including Mercurial, Git, Subversion,
+and Bazaar. Read the Docs supports MkDocs out-of-the-box. Follow the
+<a href="https://docs.readthedocs.io/en/stable/intro/getting-started-with-mkdocs.html">instructions</a> on their site to arrange the files in your repository properly,
+create an account and point it at your publicly hosted repository. If properly
+configured, your documentation will update each time you push commits to your
+public repository.</p>
+<p>!!! note</p>
+<pre><code>To benefit from all of the [features] offered by Read the Docs, you will need
+to use the [Read the Docs theme][theme] which ships with MkDocs. The various
+themes which may be referenced in Read the Docs' documentation are Sphinx
+specific themes and will not work with MkDocs.
+</code></pre>
+<h2 id="other-providers">Other Providers</h2>
+<p>Any hosting provider which can serve static files can be used to serve
+documentation generated by MkDocs. While it would be impossible to document how
+to upload the docs to every hosting provider out there, the following guidelines
+should provide some general assistance.</p>
+<p>When you build your site (using the <code>mkdocs build</code> command), all of the files
+are written to the directory assigned to the <a href="../configuration/#site_dir">site_dir</a> configuration option
+(defaults to <code>"site"</code>) in your <code>mkdocs.yaml</code> config file. Generally, you will
+simply need to copy the contents of that directory to the root directory of your
+hosting provider&rsquo;s server. Depending on your hosting provider&rsquo;s setup, you may
+need to use a graphical or command line <a href="https://en.wikipedia.org/wiki/File_Transfer_Protocol">ftp</a>, <a href="https://en.wikipedia.org/wiki/Secure_Shell">ssh</a> or <a href="https://en.wikipedia.org/wiki/Secure_copy">scp</a> client to transfer
+the files.</p>
+<p>For example, a typical set of commands from the command line might look
+something like this:</p>
+<pre><code class="language-sh">mkdocs build
+scp -r ./site user@host:/path/to/server/root
+</code></pre>
+<p>Of course, you will need to replace <code>user</code> with the username you have with your
+hosting provider and <code>host</code> with the appropriate domain name. Additionally, you
+will need to adjust the <code>/path/to/server/root</code> to match the configuration of
+your hosts&rsquo; file system.</p>
+<p>See your host&rsquo;s documentation for specifics. You will likely want to search
+their documentation for &ldquo;ftp&rdquo; or &ldquo;uploading site&rdquo;.</p>
+<h2 id="local-files">Local Files</h2>
+<p>Rather than hosting your documentation on a server, you may instead distribute
+the files directly, which can then be viewed in a browser using the <code>file://</code>
+scheme.</p>
+<p>Note that, due to the security settings of all modern browsers, some things
+will not work the same and some features may not work at all. In fact, a few
+settings will need to be customized in very specific ways.</p>
+<ul>
+<li>
+<p><a href="../configuration/#site_url">site_url</a>:</p>
+<p>The <code>site_url</code> must be set to an empty string, which instructs MkDocs to
+build your site so that it will work with the <code>file://</code> scheme.</p>
+<pre><code>site_url: ""
+</code></pre>
+</li>
+<li>
+<p><a href="../configuration/#use_directory_urls">use_directory_urls</a>:</p>
+<p>Set <code>use_directory_urls</code> to <code>false</code>. Otherwise, internal links between
+pages will not work properly.</p>
+<pre><code>use_directory_urls: false
+</code></pre>
+</li>
+<li>
+<p><a href="../configuration/#search">search</a>:</p>
+<p>You will need to either disable the search plugin, or use a third-party
+search plugin which is specifically designed to work with the <code>file://</code>
+scheme. To disable all plugins, set the <code>plugins</code> setting to an empty list.</p>
+<pre><code>plugins: []
+</code></pre>
+<p>If you have other plugins enabled, simply ensure that <code>search</code> is not
+included in the list.</p>
+</li>
+</ul>
+<p>When writing your documentation, it is imperative that all internal links use
+relative URLs as <a href="../writing-your-docs/#internal-links">documented</a>. Remember, each reader of your
+documentation will be using a different device and the files will likely be in a
+different location on that device.</p>
+<p>If you expect your documentation to be viewed off-line, you may also need to be
+careful about which themes you choose. Many themes make use of CDNs for various
+support files, which require a live Internet connection. You will need to choose
+a theme which includes all support files directly in the theme.</p>
+<p>When you build your site (using the <code>mkdocs build</code> command), all of the files
+are written to the directory assigned to the <a href="../configuration/#site_dir">site_dir</a> configuration option
+(defaults to <code>"site"</code>) in your <code>mkdocs.yaml</code> config file. Generally, you will
+simply need to copy the contents of that directory and distribute it to your
+readers. Alternatively, you may choose to use a third party tool to convert the
+HTML files to some other documentation format.</p>
+<h2 id="404-pages">404 Pages</h2>
+<p>When MkDocs builds the documentation it will include a 404.html file in the
+<a href="../configuration/#site_dir">build directory</a>. This file will be automatically used when
+deploying to <a href="#github-pages">GitHub</a> but only on a custom domain. Other web
+servers may be configured to use it but the feature won&rsquo;t always be available.
+See the documentation for your server of choice for more information.</p>
+
+
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
+
+<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../../../../js/main.js"></script>
+<script src="../../../../search/main.js"></script>
+<script src="../../../../js/gitbook.min.js"></script>
+<script src="../../../../js/theme.min.js"></script>
+</body>
+</html>

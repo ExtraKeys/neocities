@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Configuration - ExtraKeys</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.2.2, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../../../../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../../../../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../../../.." target="_blank" class="custom-link">ExtraKeys</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="">
+<a href="../../../..">Home</a>
+<li class="chapter" data-path="about/">
+<a href="../../../../about/">About</a>
+<li class="chapter" data-path="resources/">
+<a href="../../../../resources/">Resources</a>
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="configuration">Configuration</h1>
+<p>Guide to all available configuration settings.</p>
+<hr />
+<h2 id="introduction">Introduction</h2>
+<p>Project settings are always configured by using a YAML configuration file in the
+project directory named <code>mkdocs.yml</code>.</p>
+<p>As a minimum, this configuration file must contain the <code>site_name</code> and
+<code>site_url</code> settings. All other settings are optional.</p>
+<h2 id="project-information">Project information</h2>
+<h3 id="site_name">site_name</h3>
+<p>This is a <strong>required setting</strong>, and should be a string that is used as the main
+title for the project documentation. For example:</p>
+<pre><code class="language-yaml">site_name: Marshmallow Generator
+</code></pre>
+<p>When rendering the theme this setting will be passed as the <code>site_name</code> context
+variable.</p>
+<h3 id="site_url">site_url</h3>
+<p>Set the canonical URL of the site. This will add a <code>link</code> tag with the
+<code>canonical</code> URL to the <code>head</code> section of each HTML page. If the &lsquo;root&rsquo; of the
+MkDocs site will be within a subdirectory of a domain, be sure to include that
+subdirectory in the setting (<code>https://example.com/foo/</code>).</p>
+<p>This setting is also used for <code>mkdocs serve</code>: the server will be mounted onto a
+path taken from the path component of the URL, e.g. <code>some/page.md</code> will be
+served from <code>http://127.0.0.1:8000/foo/some/page/</code> to mimick the expected remote
+layout.</p>
+<p><strong>default</strong>: <code>null</code></p>
+<h3 id="repo_url">repo_url</h3>
+<p>When set, provides a link to your repository (GitHub, Bitbucket, GitLab, &hellip;)
+on each page.</p>
+<pre><code class="language-yaml">repo_url: https://github.com/example/repository/
+</code></pre>
+<p><strong>default</strong>: <code>null</code></p>
+<h3 id="repo_name">repo_name</h3>
+<p>When set, provides the name for the link to your repository on each page.</p>
+<p><strong>default</strong>: <code>'GitHub'</code>, <code>'Bitbucket'</code> or <code>'GitLab'</code> if the <code>repo_url</code> matches
+those domains, otherwise the hostname from the <code>repo_url</code>.</p>
+<h3 id="edit_uri">edit_uri</h3>
+<p>The path from the base <code>repo_url</code> to the docs directory when directly viewing a
+page, accounting for specifics of the repository host (e.g. GitHub, Bitbucket,
+etc), the branch, and the docs directory itself. MkDocs concatenates <code>repo_url</code>
+and <code>edit_uri</code>, and appends the input path of the page.</p>
+<p>When set, and if your theme supports it, provides a link directly to the page in
+your source repository. This makes it easier to find and edit the source for the
+page. If <code>repo_url</code> is not set, this option is ignored. On some themes, setting
+this option may cause an edit link to be used in place of a repository link.
+Other themes may show both links.</p>
+<p>The <code>edit_uri</code> supports query (&lsquo;?&rsquo;) and fragment (&lsquo;#&rsquo;) characters. For
+repository hosts that use a query or a fragment to access the files, the
+<code>edit_uri</code> might be set as follows. (Note the <code>?</code> and <code>#</code> in the URI&hellip;)</p>
+<pre><code class="language-yaml"># Query string example
+edit_uri: '?query=root/path/docs/'
+</code></pre>
+<pre><code class="language-yaml"># Hash fragment example
+edit_uri: '#root/path/docs/'
+</code></pre>
+<p>For other repository hosts, simply specify the relative path to the docs
+directory.</p>
+<pre><code class="language-yaml"># Query string example
+edit_uri: root/path/docs/
+</code></pre>
+<p>!!! note
+    On a few known hosts (specifically GitHub, Bitbucket and GitLab), the
+    <code>edit_uri</code> is derived from the &lsquo;repo_url&rsquo; and does not need to be set
+    manually. Simply defining a <code>repo_url</code> will automatically populate the
+    <code>edit_uri</code> configs setting.</p>
+<pre><code>For example, for a GitHub- or GitLab-hosted repository, the `edit_uri`
+would be automatically set as `edit/master/docs/` (Note the `edit` path
+and `master` branch).
+
+For a Bitbucket-hosted repository, the equivalent `edit_uri` would be
+automatically set as `src/default/docs/` (note the `src` path and `default`
+branch).
+
+To use a different URI than the default (for example a different branch),
+simply set the `edit_uri` to your desired string. If you do not want any
+"edit URL link" displayed on your pages, then set `edit_uri` to an empty
+string to disable the automatic setting.
+</code></pre>
+<p>!!! warning
+    On GitHub and GitLab, the default &ldquo;edit&rdquo; path (<code>edit/master/docs/</code>) opens
+    the page in the online editor. This functionality requires that the user
+    have and be logged in to a GitHub/GitLab account. Otherwise, the user will
+    be redirected to a login/signup page. Alternatively, use the &ldquo;blob&rdquo; path
+    (<code>blob/master/docs/</code>) to open a read-only view, which supports anonymous
+    access.</p>
+<p><strong>default</strong>: <code>edit/master/docs/</code> for GitHub and GitLab repos or
+<code>src/default/docs/</code> for a Bitbucket repo, if <code>repo_url</code> matches those domains,
+otherwise <code>null</code></p>
+<h3 id="site_description">site_description</h3>
+<p>Set the site description. This will add a meta tag to the generated HTML header.</p>
+<p><strong>default</strong>: <code>null</code></p>
+<h3 id="site_author">site_author</h3>
+<p>Set the name of the author. This will add a meta tag to the generated HTML
+header.</p>
+<p><strong>default</strong>: <code>null</code></p>
+<h3 id="copyright">copyright</h3>
+<p>Set the copyright information to be included in the documentation by the theme.</p>
+<p><strong>default</strong>: <code>null</code></p>
+<h3 id="remote_branch">remote_branch</h3>
+<p>Set the remote branch to commit to when using <code>gh-deploy</code> to deploy to GitHub
+Pages. This option can be overridden by a command line option in <code>gh-deploy</code>.</p>
+<p><strong>default</strong>: <code>gh-pages</code></p>
+<h3 id="remote_name">remote_name</h3>
+<p>Set the remote name to push to when using <code>gh-deploy</code> to deploy to GitHub Pages.
+This option can be overridden by a command line option in <code>gh-deploy</code>.</p>
+<p><strong>default</strong>: <code>origin</code></p>
+<h2 id="documentation-layout">Documentation layout</h2>
+<h3 id="nav">nav</h3>
+<p>This setting is used to determine the format and layout of the global navigation
+for the site. A minimal navigation configuration could look like this:</p>
+<pre><code class="language-yaml">nav:
+    - 'index.md'
+    - 'about.md'
+</code></pre>
+<p>All paths must be relative to the <code>mkdocs.yml</code> configuration file. See the
+section on <a href="../writing-your-docs/#configure-pages-and-navigation">configuring pages and navigation</a> for a more detailed breakdown,
+including how to create sub-sections.</p>
+<p>Navigation items may also include links to external sites. While titles are
+optional for internal links, they are required for external links. An external
+link may be a full URL or a relative URL. Any path which is not found in the
+files is assumed to be an external link. See the section about [Meta-Data] on
+how MkDocs determines the page title of a document.</p>
+<pre><code class="language-yaml">nav:
+    - Introduction: 'index.md'
+    - 'about.md'
+    - 'Issue Tracker': 'https://example.com/'
+</code></pre>
+<p>In the above example, the first two items point to local files while the third
+points to an external site.</p>
+<p>However, sometimes the MkDocs site is hosted in a subdirectory of a project&rsquo;s
+site and you may want to link to other parts of the same site without including
+the full domain. In that case, you may use an appropriate relative URL.</p>
+<pre><code class="language-yaml">site_url: https://example.com/foo/
+
+nav:
+    - Home: '../'
+    - 'User Guide': 'user-guide.md'
+    - 'Bug Tracker': '/bugs/'
+</code></pre>
+<p>In the above example, two different styles of external links are used. First,
+note that the <code>site_url</code> indicates that the MkDocs site is hosted in the <code>/foo/</code>
+subdirectory of the domain. Therefore, the <code>Home</code> navigation item is a relative
+link that steps up one level to the server root and effectively points to
+<code>https://example.com/</code>. The <code>Bug Tracker</code> item uses an absolute path from the
+server root and effectively points to <code>https://example.com/bugs/</code>. Of course, the
+<code>User Guide</code> points to a local MkDocs page.</p>
+<p><strong>default</strong>: By default <code>nav</code> will contain an alphanumerically sorted, nested
+list of all the Markdown files found within the <code>docs_dir</code> and its
+sub-directories. Index files will always be listed first within a sub-section.</p>
+<h2 id="build-directories">Build directories</h2>
+<h3 id="theme">theme</h3>
+<p>Sets the theme and theme specific configuration of your documentation site.
+May be either a string or a set of key/value pairs.</p>
+<p>If a string, it must be the string name of a known installed theme. For a list
+of available themes visit <a href="../choosing-your-theme/">Choosing Your Theme</a>.</p>
+<p>An example set of key/value pairs might look something like this:</p>
+<pre><code class="language-yaml">theme:
+    name: mkdocs
+    locale: en
+    custom_dir: my_theme_customizations/
+    static_templates:
+        - sitemap.html
+    include_sidebar: false
+</code></pre>
+<p>If a set of key/value pairs, the following nested keys can be defined:</p>
+<p>!!! block &ldquo;&rdquo;</p>
+<pre><code>#### name:
+
+The string name of a known installed theme. For a list of available themes
+visit [Choosing Your Theme].
+
+#### locale:
+
+A code representing the language of your site. See [Localizing your theme]
+for details.
+
+#### custom_dir:
+
+A directory containing a custom theme. This can either be a relative
+directory, in which case it is resolved relative to the directory containing
+your configuration file or it can be an absolute directory path from the
+root of your local file system.
+
+See [Customizing Your Theme][theme_dir] for details if you would like to tweak an
+existing theme.
+
+See the [Theme Developer Guide] if you would like to build your own theme
+from the ground up.
+
+#### static_templates:
+
+A list of templates to render as static pages. The templates must be located
+in either the theme's template directory or in the `custom_dir` defined in
+the theme configuration.
+
+#### (theme specific keywords)
+
+Any additional keywords supported by the theme can also be defined. See the
+documentation for the theme you are using for details.
+</code></pre>
+<p><strong>default</strong>: <code>'mkdocs'</code></p>
+<h3 id="docs_dir">docs_dir</h3>
+<p>The directory containing the documentation source markdown files. This can
+either be a relative directory, in which case it is resolved relative to the
+directory containing your configuration file, or it can be an absolute directory
+path from the root of your local file system.</p>
+<p><strong>default</strong>: <code>'docs'</code></p>
+<h3 id="site_dir">site_dir</h3>
+<p>The directory where the output HTML and other files are created. This can either
+be a relative directory, in which case it is resolved relative to the directory
+containing your configuration file, or it can be an absolute directory path from
+the root of your local file system.</p>
+<p><strong>default</strong>: <code>'site'</code></p>
+<p>!!! note &ldquo;Note:&rdquo;
+    If you are using source code control you will normally want to ensure that
+    your <em>build output</em> files are not committed into the repository, and only
+    keep the <em>source</em> files under version control. For example, if using <code>git</code>
+    you might add the following line to your <code>.gitignore</code> file:</p>
+<pre><code>    site/
+
+If you're using another source code control tool, you'll want to check its
+documentation on how to ignore specific directories.
+</code></pre>
+<h3 id="extra_css">extra_css</h3>
+<p>Set a list of CSS files in your <code>docs_dir</code> to be included by the theme. For
+example, the following example will include the extra.css file within the
+css subdirectory in your <a href="#docs_dir">docs_dir</a>.</p>
+<pre><code class="language-yaml">extra_css:
+    - css/extra.css
+    - css/second_extra.css
+</code></pre>
+<p><strong>default</strong>: <code>[]</code> (an empty list).</p>
+<h3 id="extra_javascript">extra_javascript</h3>
+<p>Set a list of JavaScript files in your <code>docs_dir</code> to be included by the theme.
+See the example in <a href="#extra_css">extra_css</a> for usage.</p>
+<p><strong>default</strong>: <code>[]</code> (an empty list).</p>
+<h3 id="extra_templates">extra_templates</h3>
+<p>Set a list of templates in your <code>docs_dir</code> to be built by MkDocs. To see more
+about writing templates for MkDocs read the documentation about [custom themes]
+and specifically the section about the [available variables] to
+templates. See the example in <a href="#extra_css">extra_css</a> for usage.</p>
+<p><strong>default</strong>: <code>[]</code> (an empty list).</p>
+<h3 id="extra">extra</h3>
+<p>A set of key-value pairs, where the values can be any valid YAML construct, that
+will be passed to the template. This allows for great flexibility when creating
+custom themes.</p>
+<p>For example, if you are using a theme that supports displaying the project
+version, you can pass it to the theme like this:</p>
+<pre><code class="language-yaml">extra:
+    version: 1.0
+</code></pre>
+<p><strong>default</strong>: By default <code>extra</code> will be an empty key-value mapping.</p>
+<h2 id="preview-controls">Preview controls</h2>
+<h3 id="use_directory_urls">use_directory_urls</h3>
+<p>This setting controls the style used for linking to pages within the
+documentation.</p>
+<p>The following table demonstrates how the URLs used on the site differ when
+setting <code>use_directory_urls</code> to <code>true</code> or <code>false</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Source file</th>
+<th>use_directory_urls: true</th>
+<th>use_directory_urls: false</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>index.md</td>
+<td>/</td>
+<td>/index.html</td>
+</tr>
+<tr>
+<td>api-guide.md</td>
+<td>/api-guide/</td>
+<td>/api-guide.html</td>
+</tr>
+<tr>
+<td>about/license.md</td>
+<td>/about/license/</td>
+<td>/about/license.html</td>
+</tr>
+</tbody>
+</table>
+<p>The default style of <code>use_directory_urls: true</code> creates more user friendly URLs,
+and is usually what you&rsquo;ll want to use.</p>
+<p>The alternate style can be useful if you want your documentation to remain
+properly linked when opening pages directly from the file system, because it
+creates links that point directly to the target <em>file</em> rather than the target
+<em>directory</em>.</p>
+<p><strong>default</strong>: <code>true</code></p>
+<h3 id="strict">strict</h3>
+<p>Determines how warnings are handled. Set to <code>true</code> to halt processing when a
+warning is raised. Set to <code>false</code> to print a warning and continue processing.</p>
+<p><strong>default</strong>: <code>false</code></p>
+<h3 id="dev_addr">dev_addr</h3>
+<p>Determines the address used when running <code>mkdocs serve</code>. Must be of the format
+<code>IP:PORT</code>.</p>
+<p>Allows a custom default to be set without the need to pass it through the
+<code>--dev-addr</code> option every time the <code>mkdocs serve</code> command is called.</p>
+<p><strong>default</strong>: <code>'127.0.0.1:8000'</code></p>
+<p>See also: <a href="#site_url">site_url</a>.</p>
+<h2 id="formatting-options">Formatting options</h2>
+<h3 id="markdown_extensions">markdown_extensions</h3>
+<p>MkDocs uses the <a href="https://python-markdown.github.io/">Python Markdown</a> library to translate Markdown files
+into HTML. Python Markdown supports a variety of <a href="https://python-markdown.github.io/extensions/">extensions</a>
+that customize how pages are formatted. This setting lets you enable a list of
+extensions beyond the ones that MkDocs uses by default (<code>meta</code>, <code>toc</code>, <code>tables</code>,
+and <code>fenced_code</code>).</p>
+<p>For example, to enable the <a href="https://python-markdown.github.io/extensions/smarty/">SmartyPants typography extension</a>, use:</p>
+<pre><code class="language-yaml">markdown_extensions:
+    - smarty
+</code></pre>
+<p>Some extensions provide configuration options of their own. If you would like to
+set any configuration options, then you can nest a key/value mapping
+(<code>option_name: option value</code>) of any options that a given extension supports.
+See the documentation for the extension you are using to determine what options
+they support.</p>
+<p>For example, to enable permalinks in the (included) <code>toc</code> extension, use:</p>
+<pre><code class="language-yaml">markdown_extensions:
+    - toc:
+        permalink: True
+</code></pre>
+<p>Note that a colon (<code>:</code>) must follow the extension name (<code>toc</code>) and then on a new
+line the option name and value must be indented and separated by a colon. If you
+would like to define multiple options for a single extension, each option must be
+defined on a separate line:</p>
+<pre><code class="language-yaml">markdown_extensions:
+    - toc:
+        permalink: True
+        separator: &quot;_&quot;
+</code></pre>
+<p>Add an additional item to the list for each extension. If you have no
+configuration options to set for a specific extension, then simply omit options
+for that extension:</p>
+<pre><code class="language-yaml">markdown_extensions:
+    - smarty
+    - toc:
+        permalink: True
+    - sane_lists
+</code></pre>
+<p>In the above examples, each extension is a list item (starts with a <code>-</code>). As an
+alternative, key/value pairs can be used instead. However, in that case an empty
+value must be provided for extensions for which no options are defined.
+Therefore, the last example above could also be defined as follows:</p>
+<pre><code class="language-yaml">markdown_extensions:
+    smarty: {}
+    toc:
+        permalink: True
+    sane_lists: {}
+</code></pre>
+<p>This alternative syntax is required if you intend to override some options via
+<a href="#configuration-inheritance">inheritance</a>.</p>
+<p>!!! note &ldquo;See Also:&rdquo;
+    The Python-Markdown documentation provides a <a href="https://python-markdown.github.io/extensions/">list of extensions</a>
+    which are available out-of-the-box. For a list of configuration options
+    available for a given extension, see the documentation for that extension.</p>
+<pre><code>You may also install and use various [third party extensions][3rd]. Consult
+the documentation provided by those extensions for installation instructions
+and available configuration options.
+</code></pre>
+<p><strong>default</strong>: <code>[]</code> (an empty list).</p>
+<h3 id="plugins">plugins</h3>
+<p>A list of plugins (with optional configuration settings) to use when building
+the site. See the <a href="#plugins">Plugins</a> documentation for full details.</p>
+<p>If the <code>plugins</code> config setting is defined in the <code>mkdocs.yml</code> config file, then
+any defaults (such as <code>search</code>) are ignored and you need to explicitly re-enable
+the defaults if you would like to continue using them:</p>
+<pre><code class="language-yaml">plugins:
+    - search
+    - your_other_plugin
+</code></pre>
+<p>To define options for a given plugin, use a nested set of key/value pairs:</p>
+<pre><code class="language-yaml">plugins:
+    - search
+    - your_other_plugin:
+        option1: value
+        option2: other value
+</code></pre>
+<p>In the above examples, each plugin is a list item (starts with a <code>-</code>). As an
+alternative, key/value pairs can be used instead. However, in that case an empty
+value must be provided for plugins for which no options are defined. Therefore,
+the last example above could also be defined as follows:</p>
+<pre><code class="language-yaml">plugins:
+    search: {}
+    your_other_plugin:
+        option1: value
+        option2: other value
+</code></pre>
+<p>This alternative syntax is required if you intend to override some options via
+<a href="#configuration-inheritance">inheritance</a>.</p>
+<p>To completely disable all plugins, including any defaults, set the <code>plugins</code>
+setting to an empty list:</p>
+<pre><code class="language-yaml">plugins: []
+</code></pre>
+<p><strong>default</strong>: <code>['search']</code> (the &ldquo;search&rdquo; plugin included with MkDocs).</p>
+<h4 id="search">Search</h4>
+<p>A search plugin is provided by default with MkDocs which uses <a href="https://lunrjs.com/">lunr.js</a> as a
+search engine. The following config options are available to alter the behavior
+of the search plugin:</p>
+<h5 id="separator"><strong>separator</strong></h5>
+<p>A regular expression which matches the characters used as word separators when
+building the index. By default whitespace and the hyphen (<code>-</code>) are used. To add
+the dot (<code>.</code>) as a word separator you might do this:</p>
+<pre><code class="language-yaml">plugins:
+    - search:
+        separator: '[\s\-\.]+'
+</code></pre>
+<p><strong>default</strong>: <code>'[\s\-]+'</code></p>
+<h5 id="min_search_length"><strong>min_search_length</strong></h5>
+<p>An integer value that defines the minimum length for a search query. By default
+searches shorter than 3 chars in length are ignored as search result quality with
+short search terms are poor. However, for some use cases (such as documentation
+about Message Queues which might generate searches for &lsquo;MQ&rsquo;) it may be preferable
+to set a shorter limit.</p>
+<pre><code class="language-yaml">plugins:
+    - search:
+        min_search_length: 2
+</code></pre>
+<p><strong>default</strong>: 3</p>
+<h5 id="lang"><strong>lang</strong></h5>
+<p>A list of languages to use when building the search index as identified by their
+<a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a> language codes. With <a href="https://github.com/MihaiValentin/lunr-languages#lunr-languages-----">Lunr Languages</a>, the following languages are
+supported:</p>
+<ul>
+<li><code>ar</code>: Arabic</li>
+<li><code>da</code>: Danish</li>
+<li><code>nl</code>: Dutch</li>
+<li><code>en</code>: English</li>
+<li><code>fi</code>: Finnish</li>
+<li><code>fr</code>: French</li>
+<li><code>de</code>: German</li>
+<li><code>hu</code>: Hungarian</li>
+<li><code>it</code>: Italian</li>
+<li><code>ja</code>: Japanese</li>
+<li><code>no</code>: Norwegian</li>
+<li><code>pt</code>: Portuguese</li>
+<li><code>ro</code>: Romanian</li>
+<li><code>ru</code>: Russian</li>
+<li><code>es</code>: Spanish</li>
+<li><code>sv</code>: Swedish</li>
+<li><code>th</code>: Thai</li>
+<li><code>tr</code>: Turkish</li>
+<li><code>vi</code>: Vietnamese</li>
+</ul>
+<p>You may <a href="https://github.com/MihaiValentin/lunr-languages/blob/master/CONTRIBUTING.md">contribute additional languages</a>.</p>
+<p>!!! Warning</p>
+<pre><code>While search does support using multiple languages together, it is best not
+to add additional languages unless you really need them. Each additional
+language adds significant bandwidth requirements and uses more browser
+resources. Generally, it is best to keep each instance of MkDocs to a single
+language.
+</code></pre>
+<p>!!! Note</p>
+<pre><code>Lunr Languages does not currently include support for Chinese or other Asian
+languages. However, some users have reported decent results using Japanese.
+</code></pre>
+<p><strong>default</strong>: The value of <code>theme.locale</code> if set, otherwise <code>[en]</code>.</p>
+<h5 id="prebuild_index"><strong>prebuild_index</strong></h5>
+<p>Optionally generates a pre-built index of all pages, which provides some
+performance improvements for larger sites. Before enabling, confirm that the
+theme you are using explicitly supports using a prebuilt index (the builtin
+themes do). Set to <code>true</code> to enable.</p>
+<p>!!! warning</p>
+<pre><code>This option requires that [Node.js] be installed and the command `node` be
+on the system path. If the call to `node` fails for any reason, a warning
+is issued and the build continues uninterupted. You may use the `--strict`
+flag when building to cause such a failure to raise an error instead.
+</code></pre>
+<p>!!! Note</p>
+<pre><code>On smaller sites, using a pre-built index is not recommended as it creates a
+significant increase is bandwidth requirements with little to no noticeable
+improvement to your users. However, for larger sites (hundreds of pages),
+the bandwidth increase is relatively small and your users will notice a
+significant improvement in search performance.
+</code></pre>
+<p><strong>default</strong>: <code>False</code></p>
+<h5 id="indexing"><strong>indexing</strong></h5>
+<p>Configures what strategy the search indexer will use when building the index
+for your pages. This property is particularly useful if your project is large
+in scale, and the index takes up an enormous amount of disk space.</p>
+<pre><code class="language-yaml">plugins:
+    - search:
+        indexing: 'full'
+</code></pre>
+<h6 id="options">Options</h6>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>full</code></td>
+<td>Indexes the title, section headings, and full text of each page.</td>
+</tr>
+<tr>
+<td><code>sections</code></td>
+<td>Indexes the title and section headings of each page.</td>
+</tr>
+<tr>
+<td><code>titles</code></td>
+<td>Indexes only the title of each page.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>default</strong>: <code>full</code></p>
+<h2 id="environment-variables">Environment Variables</h2>
+<p>In most cases, the value of a configuration option is set directly in the
+configuration file. However, as an option, the value of a configuration option
+may be set to the value of an environment variable using the <code>!ENV</code> tag. For
+example, to set the value of the <code>site_name</code> option to the value of the
+variable <code>SITE_NAME</code> the YAML file may contain the following:</p>
+<pre><code class="language-yaml">site_name: !ENV SITE_NAME
+</code></pre>
+<p>If the environment variable is not defined, then the configuration setting
+would be assigned a <code>null</code> (or <code>None</code> in Python) value. A default value can be
+defined as the last value in a list. Like this:</p>
+<pre><code class="language-yaml">site_name: !ENV [SITE_NAME, 'My default site name']
+</code></pre>
+<p>Multiple fallback variables can be used as well. Note that the last value is
+not an environment variable, but must be a value to use as a default if none
+of the specified environment variables are defined.</p>
+<pre><code class="language-yaml">site_name: !ENV [SITE_NAME, OTHER_NAME, 'My default site name']
+</code></pre>
+<p>Simple types defined within an environment variable such as string, bool,
+integer, float, datestamp and null are parsed as if they were defined directly
+in the YAML file, which means that the value will be converted to the
+appropriate type. However, complex types such as lists and key/value pairs
+cannot be defined within a single environment variable.</p>
+<p>For more details, see the <a href="https://github.com/waylan/pyyaml-env-tag">pyyaml_env_tag</a>
+project.</p>
+<h2 id="configuration-inheritance">Configuration Inheritance</h2>
+<p>Generally, a single file would hold the entire configuration for a site.
+However, some organizations may maintain multiple sites which all share a common
+configuration across them. Rather than maintaining separate configurations for
+each, the common configuration options can be defined in a parent configuration
+while which each site&rsquo;s primary configuration file inherits.</p>
+<p>To define the parent for a configuration file, set the <code>INHERIT</code> (all caps) key
+to the path of the parent file. The path must be relative to the location of the
+primary file.</p>
+<p>For configuration options to be merged with a parent configuration, those
+options must be defined as key/value pairs. Specifically, the
+<a href="#markdown_extensions">markdown_extensions</a> and <a href="#plugins">plugins</a> options must use the alternative syntax
+which does not use list items (lines which start with  <code>-</code>).</p>
+<p>For example, suppose the common (parent) configuration is defined in <code>base.yml</code>:</p>
+<pre><code class="language-yaml">theme:
+    name: mkdocs
+    locale: en
+    highlightjs: true
+
+markdown_extensions:
+    toc:
+        permalink: true
+    admonition: {}
+</code></pre>
+<p>Then, for the &ldquo;foo&rdquo; site, the primary configuration file would be defined at
+<code>foo/mkdocs.yml</code>:</p>
+<pre><code class="language-yml">INHERIT: ../base.yml
+site_name: Foo Project
+site_url: https://example.com/foo
+</code></pre>
+<p>When running <code>mkdocs build</code>, the file at <code>foo/mkdocs.yml</code> would be passed in as
+the configuration file. MkDocs will then parse that file, retrieve and parse the
+parent file <code>base.yml</code> and deep merge the two. This would result in MkDocs
+receiving the following merged configuration:</p>
+<pre><code class="language-yaml">site_name: Foo Project
+site_url: https://example.com/foo
+
+theme:
+    name: mkdocs
+    locale: en
+    highlightjs: true
+
+markdown_extensions:
+    toc:
+        permalink: true
+    admonition: {}
+</code></pre>
+<p>Deep merging allows you to add and/or override various values in your primary
+configuration file. For example, suppose for one site you wanted to add support
+for definition lists, use a different symbol for permalinks, and define a
+different separator. In that site&rsquo;s primary configuration file you could do:</p>
+<pre><code class="language-yaml">INHERIT: ../base.yml
+site_name: Bar Project
+site_url: https://example.com/bar
+
+markdown_extensions:
+    def_list: {}
+    toc:
+        permalink: 
+        separator: &quot;_&quot;
+</code></pre>
+<p>In that case, the above configuration would be deep merged with <code>base.yml</code> and
+result in the following configuration:</p>
+<pre><code class="language-yaml">site_name: Bar Project
+site_url: https://example.com/bar
+
+theme:
+    name: mkdocs
+    locale: en
+    highlightjs: true
+
+markdown_extensions:
+    def_list: {}
+    toc:
+        permalink: 
+        separator: &quot;_&quot;
+    admonition: {}
+</code></pre>
+<p>Notice that the <code>admonition</code> extension was retained from the parent
+configuration, the <code>def_list</code> extension was added, the value of
+<code>toc.permalink</code> was replaced, and the value of <code>toc.separator</code> was added.</p>
+<p>You can replace or merge the value of any key. However, any non-key is always
+replaced. Therefore, you cannot append items to a list. You must redefine the
+entire list.</p>
+<p>As the <a href="#nav">nav</a> configuration is made up of nested lists, this means that you
+cannot merge navigation items. Of course, you can replace the entire <code>nav</code>
+configuration with a new one. However, it is generally expected that the entire
+navigation would be defined in the primary configuration file for a project.</p>
+<p>!!! warning</p>
+<pre><code>As a reminder, all path based configuration options must be relative to the
+primary configuration file and MkDocs does not alter the paths when merging.
+Therefore, defining paths in a parent file which is inherited by multiple
+different sites may not work as expected. It is generally best to define
+path based options in the primary configuration file only.
+</code></pre>
+
+
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
+
+<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../../../../js/main.js"></script>
+<script src="../../../../search/main.js"></script>
+<script src="../../../../js/gitbook.min.js"></script>
+<script src="../../../../js/theme.min.js"></script>
+</body>
+</html>

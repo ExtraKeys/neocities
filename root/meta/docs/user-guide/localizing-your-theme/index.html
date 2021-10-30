@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Localizing Your Theme - ExtraKeys</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.2.2, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../../../../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../../../../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../../../.." target="_blank" class="custom-link">ExtraKeys</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="">
+<a href="../../../..">Home</a>
+<li class="chapter" data-path="about/">
+<a href="../../../../about/">About</a>
+<li class="chapter" data-path="resources/">
+<a href="../../../../resources/">Resources</a>
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="localizing-your-theme">Localizing Your Theme</h1>
+<p>Display your theme in your preferred language.</p>
+<hr />
+<p>!!! Note</p>
+<pre><code>Theme localization only translates the text elements of the theme itself
+(such as "next" and "previous" links), not the actual content of your
+documentation. If you wish to create multilingual documentation, you need
+to combine theme localization as described here with a third-party
+internationalization/localization plugin.
+</code></pre>
+<h2 id="installation">Installation</h2>
+<p>For theme localization to work, you must use a theme which supports it and
+enable <code>i18n</code> (internationalization) support by installing <code>mkdocs[i18n]</code>:</p>
+<pre><code class="language-bash">pip install mkdocs[i18n]
+</code></pre>
+<h2 id="supported-locales">Supported locales</h2>
+<p>In most cases a locale is designated by the ISO-639-1 (2-letter) abbreviation
+for your language. However, a locale may also include a territory (or region or
+county) code as well. The language and territory must be separated by an
+underscore. For example, some possible locales for English might include <code>en</code>,
+<code>en_AU</code>, <code>en_GB</code>, and <code>en_US</code>.</p>
+<p>For a list of locales supported by the theme you are using, see that theme&rsquo;s
+documentation.</p>
+<ul>
+<li><a href="../choosing-your-theme/#mkdocs-locale">mkdocs</a></li>
+<li><a href="../choosing-your-theme/#readthedocs-locale">readthedocs</a></li>
+</ul>
+<p>!!! Warning</p>
+<pre><code>If you configure a language locale which is not yet supported by the theme
+that you are using, MkDocs will fall back to the theme's default locale.
+</code></pre>
+<h2 id="usage">Usage</h2>
+<p>To specify the locale that MkDocs should use, set the <a href="../configuration/#locale">locale</a>
+parameter of the <a href="../configuration/#theme">theme</a> configuration option to the appropriate code.</p>
+<p>For example, to build the <code>mkdocs</code> theme in French you would use the following
+in your <code>mkdocs.yml</code> configuration file:</p>
+<pre><code class="language-yaml"> theme:
+     name: mkdocs
+     locale: fr
+</code></pre>
+<h2 id="contributing-theme-translations">Contributing theme translations</h2>
+<p>If a theme has not yet been translated into your language, feel free to
+contribute a translation using the <a href="../../dev-guide/translations/">Translation Guide</a>.</p>
+
+
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
+
+<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../../../../js/main.js"></script>
+<script src="../../../../search/main.js"></script>
+<script src="../../../../js/gitbook.min.js"></script>
+<script src="../../../../js/theme.min.js"></script>
+</body>
+</html>

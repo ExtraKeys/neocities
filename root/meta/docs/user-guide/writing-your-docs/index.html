@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Writing your docs - ExtraKeys</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.2.2, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../../../../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../../../../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../../../.." target="_blank" class="custom-link">ExtraKeys</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="">
+<a href="../../../..">Home</a>
+<li class="chapter" data-path="about/">
+<a href="../../../../about/">About</a>
+<li class="chapter" data-path="resources/">
+<a href="../../../../resources/">Resources</a>
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="writing-your-docs">Writing your docs</h1>
+<p>How to layout and write your Markdown source files.</p>
+<hr />
+<h2 id="file-layout">File layout</h2>
+<p>Your documentation source should be written as regular Markdown files (see
+<a href="#writing-with-markdown">Writing with Markdown</a> below), and placed in the
+<a href="../configuration/#docs_dir">documentation directory</a>. By default, this directory
+will be named <code>docs</code> and will exist at the top level of your project, alongside
+the <code>mkdocs.yml</code> configuration file.</p>
+<p>The simplest project you can create will look something like this:</p>
+<pre><code class="language-no-highlight">mkdocs.yml
+docs/
+    index.md
+</code></pre>
+<p>By convention your project homepage should be named <code>index.md</code> (see <a href="#index-pages">Index
+pages</a> below for details). Any of the following file
+extensions may be used for your Markdown source files: <code>markdown</code>, <code>mdown</code>,
+<code>mkdn</code>, <code>mkd</code>, <code>md</code>. All Markdown files included in your documentation
+directory will be rendered in the built site regardless of any settings.</p>
+<p>!!! note</p>
+<pre><code>Files and directories with names which begin with a dot (for example:
+`.foo.md` or `.bar/baz.md`) are ignored by MkDocs, which matches the
+behavior of most web servers. There is no option to override this
+behavior.
+</code></pre>
+<p>You can also create multi-page documentation, by creating several Markdown
+files:</p>
+<pre><code class="language-no-highlight">mkdocs.yml
+docs/
+    index.md
+    about.md
+    license.md
+</code></pre>
+<p>The file layout you use determines the URLs that are used for the generated
+pages. Given the above layout, pages would be generated for the following URLs:</p>
+<pre><code class="language-no-highlight">/
+/about/
+/license/
+</code></pre>
+<p>You can also include your Markdown files in nested directories if that better
+suits your documentation layout.</p>
+<pre><code class="language-no-highlight">docs/
+    index.md
+    user-guide/getting-started.md
+    user-guide/configuration-options.md
+    license.md
+</code></pre>
+<p>Source files inside nested directories will cause pages to be generated with
+nested URLs, like so:</p>
+<pre><code class="language-no-highlight">/
+/user-guide/getting-started/
+/user-guide/configuration-options/
+/license/
+</code></pre>
+<p>Any files which are not identified as Markdown files (by their file extension)
+within the <a href="../configuration/#docs_dir">documentation directory</a> are copied by
+MkDocs to the built site unaltered. See
+<a href="#linking-to-images-and-media">how to link to images and media</a> below for details.</p>
+<h3 id="index-pages">Index pages</h3>
+<p>When a directory is requested, by default, most web servers will return an index
+file (usually named <code>index.html</code>) contained within that directory if one exists.
+For that reason, the homepage in all of the examples above has been named
+<code>index.md</code>, which MkDocs will render to <code>index.html</code> when building the site.</p>
+<p>Many repository hosting sites provide special treatment for README files by
+displaying the contents of the README file when browsing the contents of a
+directory. Therefore, MkDocs will allow you to name your index pages as
+<code>README.md</code> instead of <code>index.md</code>. In that way, when users are browsing your
+source code, the repository host can display the index page of that directory as
+it is a README file. However, when MkDocs renders your site, the file will be
+renamed to <code>index.html</code> so that the server will serve it as a proper index file.</p>
+<p>If both an <code>index.md</code> file and a <code>README.md</code> file are found in the same
+directory, then the <code>index.md</code> file is used and the <code>README.md</code> file is
+ignored.</p>
+<h3 id="configure-pages-and-navigation">Configure Pages and Navigation</h3>
+<p>The <a href="../configuration/#nav">nav</a> configuration setting in your <code>mkdocs.yml</code> file
+defines which pages are included in the global site navigation menu as well as
+the structure of that menu. If not provided, the navigation will be
+automatically created by discovering all the Markdown files in the
+<a href="../configuration/#docs_dir">documentation directory</a>. An automatically created
+navigation configuration will always be sorted alphanumerically by file name
+(except that index files will always be listed first within a sub-section). You
+will need to manually define your navigation configuration if you would like
+your navigation menu sorted differently.</p>
+<p>A minimal navigation configuration could look like this:</p>
+<pre><code class="language-no-highlight">nav:
+    - 'index.md'
+    - 'about.md'
+</code></pre>
+<p>All paths in the navigation configuration must be relative to the <code>docs_dir</code>
+configuration option. If that option is set to the default value, <code>docs</code>, the
+source files for the above configuration would be located at <code>docs/index.md</code> and
+<code>docs/about.md</code>.</p>
+<p>The above example will result in two navigation items being created at the top
+level and with their titles inferred from the contents of the Markdown file or,
+if no title is defined within the file, of the file name. To override the title
+in the <code>nav</code> setting add a title right before the filename.</p>
+<pre><code class="language-no-highlight">nav:
+    - Home: 'index.md'
+    - About: 'about.md'
+</code></pre>
+<p>Note that if a title is defined for a page in the navigation, that title will be
+used throughout the site for that page and will override any title defined
+within the page itself.</p>
+<p>Navigation sub-sections can be created by listing related pages together under a
+section title. For example:</p>
+<pre><code class="language-no-highlight">nav:
+    - Home: 'index.md'
+    - 'User Guide':
+        - 'Writing your docs': 'writing-your-docs.md'
+        - 'Styling your docs': 'styling-your-docs.md'
+    - About:
+        - 'License': 'license.md'
+        - 'Release Notes': 'release-notes.md'
+</code></pre>
+<p>With the above configuration we have three top level items: &ldquo;Home&rdquo;, &ldquo;User Guide&rdquo;
+and &ldquo;About.&rdquo; &ldquo;Home&rdquo; is a link to the homepage for the site. Under the &ldquo;User
+Guide&rdquo; section two pages are listed: &ldquo;Writing your docs&rdquo; and &ldquo;Styling your
+docs.&rdquo; Under the &ldquo;About&rdquo; section two more pages are listed: &ldquo;License&rdquo; and
+&ldquo;Release Notes.&rdquo;</p>
+<p>Note that a section cannot have a page assigned to it. Sections are only
+containers for child pages and sub-sections. You may nest sections as deeply as
+you like. However, be careful that you don&rsquo;t make it too difficult for your
+users to navigate through the site navigation by over-complicating the nesting.
+While sections may mirror your directory structure, they do not have to.</p>
+<p>Any pages not listed in your navigation configuration will still be rendered and
+included with the built site, however, they will not be linked from the global
+navigation and will not be included in the <code>previous</code> and <code>next</code> links. Such
+pages will be &ldquo;hidden&rdquo; unless linked to directly.</p>
+<h2 id="writing-with-markdown">Writing with Markdown</h2>
+<p>MkDocs pages must be authored in <a href="https://daringfireball.net/projects/markdown/">Markdown</a>, a lightweight markup language
+which results in easy-to-read, easy-to-write plain text documents that can be
+converted to valid HTML documents in a predictable manner.</p>
+<p>MkDocs uses the <a href="https://python-markdown.github.io/">Python-Markdown</a> library to render Markdown documents to HTML.
+Python-Markdown is almost completely compliant with the <a href="https://daringfireball.net/projects/markdown/">reference
+implementation</a>, although there are a few very minor <a href="https://python-markdown.github.io/#differences">differences</a>.</p>
+<p>In addition to the base Markdown <a href="https://daringfireball.net/projects/markdown/syntax">syntax</a> which is common across all Markdown
+implementations, MkDocs includes support for extending the Markdown syntax with
+Python-Markdown <a href="https://python-markdown.github.io/extensions/">extensions</a>. See the MkDocs&rsquo; <a href="../configuration/#markdown_extensions">markdown_extensions</a>
+configuration setting for details on how to enable extensions.</p>
+<p>MkDocs includes some extensions by default, which are highlighted below.</p>
+<h3 id="internal-links">Internal links</h3>
+<p>MkDocs allows you to interlink your documentation by using regular Markdown
+<a href="https://daringfireball.net/projects/markdown/syntax#link">links</a>. However, there are a few additional benefits to formatting those links
+specifically for MkDocs as outlined below.</p>
+<h4 id="linking-to-pages">Linking to pages</h4>
+<p>When linking between pages in the documentation you can simply use the regular
+Markdown <a href="https://daringfireball.net/projects/markdown/syntax#link">linking</a> syntax, including the <em>relative path</em> to the Markdown
+document you wish to link to.</p>
+<pre><code class="language-no-highlight">Please see the [project license](license.md) for further details.
+</code></pre>
+<p>When the MkDocs build runs, these Markdown links will automatically be
+transformed into an HTML hyperlink to the appropriate HTML page.</p>
+<p>!!! warning
+    Using absolute paths with links is not officially supported. Relative paths
+    are adjusted by MkDocs to ensure they are always relative to the page. Absolute
+    paths are not modified at all. This means that your links using absolute paths
+    might work fine in your local environment but they might break once you deploy
+    them to your production server.</p>
+<p>If the target documentation file is in another directory you&rsquo;ll need to make
+sure to include any relative directory path in the link.</p>
+<pre><code class="language-no-highlight">Please see the [project license](../about/license.md) for further details.
+</code></pre>
+<p>The <a href="https://python-markdown.github.io/extensions/toc/">toc</a> extension is used by MkDocs to generate an ID for every header in your
+Markdown documents. You can use that ID to link to a section within a target
+document by using an anchor link. The generated HTML will correctly transform
+the path portion of the link, and leave the anchor portion intact.</p>
+<pre><code class="language-no-highlight">Please see the [project license](about.md#license) for further details.
+</code></pre>
+<p>Note that IDs are created from the text of a header. All text is converted to
+lowercase and any disallowed characters, including white-space, are converted to
+dashes. Consecutive dashes are then reduced to a single dash.</p>
+<p>There are a few configuration settings provided by the toc extension which you
+can set in your <code>mkdocs.yml</code> configuration file to alter the default behavior:</p>
+<p><code>permalink</code>:</p>
+<p>: Generate permanent links at the end of each header. Default: <code>False</code>.</p>
+<pre><code>When set to True the paragraph symbol (&amp;para; or `&amp;para;`) is used as the
+link text. When set to a string, the provided string is used as the link
+text. For example, to use the hash symbol (`#`) instead, do:
+
+    markdown_extensions:
+        - toc:
+            permalink: "#"
+</code></pre>
+<p><code>baselevel</code>:</p>
+<p>: Base level for headers. Default: <code>1</code>.</p>
+<pre><code>This setting allows the header levels to be automatically adjusted to fit
+within the hierarchy of your HTML templates. For example, if the Markdown
+text for a page should not contain any headers higher than level 2 (`&lt;h2&gt;`),
+do:
+
+    markdown_extensions:
+        - toc:
+            baselevel: 2
+
+Then any headers in your document would be increased by 1. For example, the
+header `# Header` would be rendered as a level 2 header (`&lt;h2&gt;`) in the HTML
+output.
+</code></pre>
+<p><code>separator</code>:</p>
+<p>: Word separator. Default: <code>-</code>.</p>
+<pre><code>Character which replaces white-space in generated IDs. If you prefer
+underscores, then do:
+
+    markdown_extensions:
+        - toc:
+            separator: "_"
+</code></pre>
+<p>Note that if you would like to define multiple of the above settings, you must
+do so under a single <code>toc</code> entry in the <code>markdown_extensions</code> configuration
+option.</p>
+<pre><code class="language-yml">markdown_extensions:
+    - toc:
+        permalink: &quot;#&quot;
+        baselevel: 2
+        separator: &quot;_&quot;
+</code></pre>
+<h4 id="linking-to-images-and-media">Linking to images and media</h4>
+<p>As well as the Markdown source files, you can also include other file types in
+your documentation, which will be copied across when generating your
+documentation site. These might include images and other media.</p>
+<p>For example, if your project documentation needed to include a <a href="https://help.github.com/articles/using-a-custom-domain-with-github-pages/">GitHub pages
+CNAME file</a> and a PNG formatted screenshot image then your file layout might
+look as follows:</p>
+<pre><code class="language-no-highlight">mkdocs.yml
+docs/
+    CNAME
+    index.md
+    about.md
+    license.md
+    img/
+        screenshot.png
+</code></pre>
+<p>To include images in your documentation source files, simply use any of the
+regular Markdown image syntaxes:</p>
+<pre><code class="language-Markdown">Cupcake indexer is a snazzy new project for indexing small cakes.
+
+![Screenshot](img/screenshot.png)
+
+*Above: Cupcake indexer in progress*
+</code></pre>
+<p>Your image will now be embedded when you build the documentation, and should
+also be previewed if you&rsquo;re working on the documentation with a Markdown editor.</p>
+<h4 id="linking-from-raw-html">Linking from raw HTML</h4>
+<p>Markdown allows document authors to fall back to raw HTML when the Markdown
+syntax does not meets the author&rsquo;s needs. MkDocs does not limit Markdown in this
+regard. However, as all raw HTML is ignored by the Markdown parser, MkDocs is
+not able to validate or convert links contained in raw HTML. When including
+internal links within raw HTML, you will need to manually format the link
+appropriately for the rendered document.</p>
+<h3 id="meta-data">Meta-Data</h3>
+<p>MkDocs includes support for both YAML and MultiMarkdown style meta-data (often
+called front-matter). Meta-data consists of a series of keywords and values
+defined at the beginning of a Markdown document, which are stripped from the
+document prior to it being processing by Python-Markdown. The key/value pairs
+are passed by MkDocs to the page template. Therefore, if a theme includes
+support, the values of any keys can be displayed on the page or used to control
+the page rendering. See your theme&rsquo;s documentation for information about which
+keys may be supported, if any.</p>
+<p>In addition to displaying information in a template, MkDocs includes support for
+a few predefined meta-data keys which can alter the behavior of MkDocs for that
+specific page. The following keys are supported:</p>
+<p><code>template</code>:</p>
+<p>: The template to use with the current page.</p>
+<pre><code>By default, MkDocs uses the `main.html` template of a theme to render
+Markdown pages. You can use the `template` meta-data key to define a
+different template file for that specific page. The template file must be
+available on the path(s) defined in the theme's environment.
+</code></pre>
+<p><code>title</code>:</p>
+<p>: The &ldquo;title&rdquo; to use for the document.</p>
+<pre><code>MkDocs will attempt to determine the title of a document in the following
+ways, in order:
+
+1. A title defined in the [nav] configuration setting for a document.
+2. A title defined in the `title` meta-data key of a document.
+3. A level 1 Markdown header on the first line of the document body.
+   Please note that [Setext-style] headers are not supported.
+4. The filename of a document.
+
+Upon finding a title for a page, MkDoc does not continue checking any
+additional sources in the above list.
+</code></pre>
+<h4 id="yaml-style-meta-data">YAML Style Meta-Data</h4>
+<p>YAML style meta-data consists of <a href="http://yaml.org">YAML</a> key/value pairs wrapped in YAML style
+deliminators to mark the start and/or end of the meta-data. The first line of
+a document must be <code>---</code>. The meta-data ends at the first line containing an
+end deliminator (either <code>---</code> or <code>...</code>). The content between the deliminators is
+parsed as <a href="http://yaml.org">YAML</a>.</p>
+<pre><code class="language-no-highlight">---
+title: My Document
+summary: A brief description of my document.
+authors:
+    - Waylan Limberg
+    - Tom Christie
+date: 2018-07-10
+some_url: https://example.com
+---
+This is the first paragraph of the document.
+</code></pre>
+<p>YAML is able to detect data types. Therefore, in the above example, the values
+of <code>title</code>, <code>summary</code> and <code>some_url</code> are strings, the value of <code>authors</code> is a
+list of strings and the value of <code>date</code> is a <code>datetime.date</code> object. Note that
+the YAML keys are case sensitive and MkDocs expects keys to be all lowercase.
+The top level of the YAML must be a collection of key/value pairs, which results
+in a Python <code>dict</code> being returned. If any other type is returned or the YAML
+parser encounters an error, then MkDocs does not recognize the section as
+meta-data, the page&rsquo;s <code>meta</code> attribute will be empty, and the section is not
+removed from the document.</p>
+<h4 id="multimarkdown-style-meta-data">MultiMarkdown Style Meta-Data</h4>
+<p>MultiMarkdown style meta-data uses a format first introduced by the
+<a href="http://fletcherpenney.net/MultiMarkdown_Syntax_Guide#metadata">MultiMarkdown</a> project. The data consists of a series of keywords and values
+defined at the beginning of a Markdown document, like this:</p>
+<pre><code class="language-no-highlight">Title:   My Document
+Summary: A brief description of my document.
+Authors: Waylan Limberg
+         Tom Christie
+Date:    January 23, 2018
+blank-value:
+some_url: https://example.com
+
+This is the first paragraph of the document.
+</code></pre>
+<p>The keywords are case-insensitive and may consist of letters, numbers,
+underscores and dashes and must end with a colon. The values consist of anything
+following the colon on the line and may even be blank.</p>
+<p>If a line is indented by 4 or more spaces, that line is assumed to be an
+additional line of the value for the previous keyword. A keyword may have as
+many lines as desired. All lines are joined into a single string.</p>
+<p>The first blank line ends all meta-data for the document. Therefore, the first
+line of a document must not be blank.</p>
+<p>!!! note</p>
+<pre><code>MkDocs does not support YAML style deliminators (`---` or `...`) for
+MultiMarkdown style meta-data. In fact, MkDocs relies on the the presence or
+absence of the deliminators to determine whether YAML style meta-data or
+MultiMarkdown style meta-data is being used. If the deliminators are
+detected, but the content between the deliminators is not valid YAML
+meta-data, MkDocs does not attempt to parse the content as MultiMarkdown
+style meta-data.
+</code></pre>
+<h3 id="tables">Tables</h3>
+<p>The <a href="https://python-markdown.github.io/extensions/tables/">tables</a> extension adds a basic table syntax to Markdown which is popular
+across multiple implementations. The syntax is rather simple and is generally
+only useful for simple tabular data.</p>
+<p>A simple table looks like this:</p>
+<pre><code class="language-no-highlight">First Header | Second Header | Third Header
+------------ | ------------- | ------------
+Content Cell | Content Cell  | Content Cell
+Content Cell | Content Cell  | Content Cell
+</code></pre>
+<p>If you wish, you can add a leading and tailing pipe to each line of the table:</p>
+<pre><code class="language-no-highlight">| First Header | Second Header | Third Header |
+| ------------ | ------------- | ------------ |
+| Content Cell | Content Cell  | Content Cell |
+| Content Cell | Content Cell  | Content Cell |
+</code></pre>
+<p>Specify alignment for each column by adding colons to separator lines:</p>
+<pre><code class="language-no-highlight">First Header | Second Header | Third Header
+:----------- |:-------------:| -----------:
+Left         | Center        | Right
+Left         | Center        | Right
+</code></pre>
+<p>Note that table cells cannot contain any block level elements and cannot contain
+multiple lines of text. They can, however, include inline Markdown as defined in
+Markdown&rsquo;s <a href="https://daringfireball.net/projects/markdown/syntax">syntax</a> rules.</p>
+<p>Additionally, a table must be surrounded by blank lines. There must be a blank
+line before and after the table.</p>
+<h3 id="fenced-code-blocks">Fenced code blocks</h3>
+<p>The <a href="https://python-markdown.github.io/extensions/fenced_code_blocks/">fenced code blocks</a> extension adds an alternate method of defining code
+blocks without indentation.</p>
+<p>The first line should contain 3 or more backtick (<code>`</code>) characters, and the
+last line should contain the same number of backtick characters (<code>`</code>):</p>
+<pre><code class="language-no-highlight">```
+Fenced code blocks are like Standard
+Markdown’s regular code blocks, except that
+they’re not indented and instead rely on
+start and end fence lines to delimit the
+code block.
+```
+</code></pre>
+<p>With this approach, the language can optionally be specified on the first line
+after the backticks which informs any syntax highlighters of the language used:</p>
+<pre><code class="language-no-highlight">```python
+def fn():
+    pass
+```
+</code></pre>
+<p>Note that fenced code blocks can not be indented. Therefore, they cannot be
+nested inside list items, blockquotes, etc.</p>
+
+
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
+
+<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../../../../js/main.js"></script>
+<script src="../../../../search/main.js"></script>
+<script src="../../../../js/gitbook.min.js"></script>
+<script src="../../../../js/theme.min.js"></script>
+</body>
+</html>

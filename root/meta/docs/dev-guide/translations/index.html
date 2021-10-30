@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Translations - ExtraKeys</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.2.2, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../../../../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../../../../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../../../.." target="_blank" class="custom-link">ExtraKeys</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="">
+<a href="../../../..">Home</a>
+<li class="chapter" data-path="about/">
+<a href="../../../../about/">About</a>
+<li class="chapter" data-path="resources/">
+<a href="../../../../resources/">Resources</a>
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="translations">Translations</h1>
+<p>Theme localization guide.</p>
+<hr />
+<p>The <a href="../../user-guide/choosing-your-theme/">built-in themes</a> that are included with MkDocs provide support for
+translations. This is a guide for translators, which documents the process for
+contributing new translations and/or updating existing translations. For
+guidance on modifying the existing themes, see the <a href="../../about/contributing/#submitting-changes-to-the-builtin-themes">Contributing Guide</a>. To enable a specific translation see the documentation about the
+specific theme you are using in the <a href="../../user-guide/choosing-your-theme/">User Guide</a>. For
+translations of third-party themes, please see the documentation for those
+themes. For a third-party theme to make use of MkDocs&rsquo; translation tools and
+methods, that theme must be properly <a href="../themes/#supporting-theme-localizationtranslation">configured</a> to make use of those tools.</p>
+<p>!!! note</p>
+<pre><code>Translations only apply to text contained within a theme's template, such
+as "next" and "previous" links. The Markdown content of a page is not
+translated. If you wish to create multilingual documentation, you need to
+combine theme localization with a third-party
+internationalization/localization plugin.
+</code></pre>
+<h2 id="localization-tooling-prerequisites">Localization tooling prerequisites</h2>
+<p>Theme localization makes use of the <a href="http://babel.pocoo.org/en/latest/cmdline.html">babel</a> project for generation and
+compilation of localization files. Custom commands are available from the
+MkDocs&rsquo; <code>setup.py</code> script as described below to assist with the process of
+updating and contributing translations. You will need to be working from the
+git working tree on your local machine to make use of the helper scripts.</p>
+<p>See the <a href="../../about/contributing/">Contributing Guide</a> for direction on how to <a href="../../about/contributing/#installing-for-development">Install for Development</a>
+and <a href="../../about/contributing/#submitting-pull-requests">Submit a Pull Request</a>. The instructions in this document assume that you
+are working from a properly configured development environment.</p>
+<p>Make sure translation requirements are installed in your environment:</p>
+<pre><code class="language-bash">pip install mkdocs[i18n]
+</code></pre>
+<h2 id="adding-language-translations-to-themes">Adding language translations to themes</h2>
+<p>If your favorite language locale is not yet supported on one (or both) of the
+built-in themes (<code>mkdocs</code> and <code>readthedocs</code>), you can easily contribute a
+translation by following the steps below.</p>
+<p>Here is a quick summary of what you&rsquo;ll need to do:</p>
+<ol>
+<li><a href="#initializing-the-localization-catalogs">Initialize new localization
+   catalogs</a> for your language (if a
+   translation for your locale already exists, follow the instructions for
+   <a href="/user-guide/custom-themes/#localizing-themes">updating theme localization
+   files</a> instead).</li>
+<li><a href="#translating-the-mkdocs-themes">Add a translation</a> for every text
+   placeholder in the localized catalogs.</li>
+<li><a href="#testing-theme-translations">Locally serve and test</a> the translated themes
+   for your language.</li>
+<li><a href="#updating-theme-documentation">Update the documentation</a> about
+   supported translations for each translated theme.</li>
+<li><a href="#contributing-translations">Contribute your translation</a> through a
+   Pull Request.</li>
+</ol>
+<p>!!! note</p>
+<pre><code>Translation locales are usually identified using the [ISO-639-1] (2-letter)
+language codes. While territory/region/county codes are also supported,
+location specific translations should only be added after the general
+language translation has been completed and the regional dialect requires
+use of a term which differs from the general language translation.
+</code></pre>
+<h3 id="initializing-the-localization-catalogs">Initializing the localization catalogs</h3>
+<p>The templates for each theme contain text placeholders that have been extracted
+into a Portable Object Template (<code>messages.pot</code>) file, which is present in each
+theme&rsquo;s folder.</p>
+<p>Initializing a catalog consists of running a command which will create a
+directory structure for your desired language and prepare a Portable Object
+(<code>messages.po</code>) file derived from the <code>pot</code> file of the theme.</p>
+<p>Use the <code>init_catalog</code> command on each theme (<code>-t &lt;theme&gt;</code>) and provide the
+appropriate language code (<code>-l &lt;language&gt;</code>). For example, to add a translation
+for the Spanish <code>es</code> language to the <code>mkdocs</code> theme, run the following command:</p>
+<pre><code class="language-bash">python setup.py init_catalog -t mkdocs -l es
+</code></pre>
+<p>The above command will create the following file structure:</p>
+<pre><code class="language-text">mkdocs/themes/mkdocs/locales
+├── es
+│   └── LC_MESSAGES
+│       └── messages.po
+</code></pre>
+<p>You can now move on to the next step and <a href="#translating-the-mkdocs-themes">add a
+translation</a> for every text placeholder in the
+localized catalog.</p>
+<h2 id="updating-a-theme-translation">Updating a theme translation</h2>
+<p>If a theme&rsquo;s <code>messages.pot</code> template file has been <a href="../../about/contributing/#submitting-changes-to-the-builtin-themes">updated</a>
+since the <code>messages.po</code> was last updated for your locale, follow the steps
+below to update the theme&rsquo;s <code>messages.po</code> file:</p>
+<ol>
+<li><a href="#updating-the-translation-catalogs">Update the theme&rsquo;s translation catalog</a>
+   to refresh the translatable text placeholders of each theme.</li>
+<li><a href="#translating-the-mkdocs-themes">Translate</a> the newly added translatable
+   text placeholders on every <code>messages.po</code> catalog file language you can.</li>
+<li><a href="#testing-theme-translations">Locally serve and test</a> the translated themes
+   for your language.</li>
+<li><a href="#contributing-translations">Contribute your translation</a> through a
+   Pull Request.</li>
+</ol>
+<h3 id="updating-the-translation-catalogs">Updating the translation catalogs</h3>
+<p>This step should be completed after a theme template have been <a href="../../about/contributing/#submitting-changes-to-the-builtin-themes">updated</a> for each language that you are comfortable contributing a translation
+for.</p>
+<p>To update the <code>fr</code> translation catalog of the <code>mkdocs</code> theme, use the following
+command:</p>
+<pre><code class="language-bash">python setup.py update_catalog -t mkdocs -l fr
+</code></pre>
+<p>You can now move on to the next step and <a href="#translating-the-mkdocs-themes">add a translation</a> for every updated
+text placeholder in the localized catalog.</p>
+<h3 id="translating-the-mkdocs-themes">Translating the MkDocs themes</h3>
+<p>Now that your localized <code>messages.po</code> files are ready, all you need to do is
+add a translation in each <code>msgstr</code> item for each <code>msgid</code> item in the file.</p>
+<pre><code class="language-text">msgid &quot;Next&quot;
+msgstr &quot;Siguiente&quot;
+</code></pre>
+<p>!!! Warning
+    Do not modify the <code>msgid</code> as it is common to all translations. Just add
+    its translation in the <code>msgstr</code> item.</p>
+<p>Once you have finished translating all of the terms listed in the <code>po</code> file,
+you&rsquo;ll want to <a href="#testing-theme-translations">test your localized theme</a>.</p>
+<h3 id="testing-theme-translations">Testing theme translations</h3>
+<p>To test a theme with translations, you need to first compile the <code>messages.po</code>
+files of your theme into <code>messages.mo</code> files. The following command will compile
+the <code>es</code> translation for the <code>mkdocs</code> theme.</p>
+<pre><code class="language-bash">python setup.py compile_catalog -t mkdocs -l es
+</code></pre>
+<p>The above command results in the following file structure:</p>
+<pre><code class="language-text">mkdocs/themes/mkdocs/locales
+├── es
+│   └── LC_MESSAGES
+│       ├── messages.mo
+│       └── messages.po
+</code></pre>
+<p>Note that the compiled <code>messages.mo</code> file was generated based on the
+<code>messages.po</code> file that you just edited.</p>
+<p>Then modify the <code>mkdocs.yml</code> file at the root of the project to test the new
+and/or updated locale:</p>
+<pre><code class="language-yaml">theme:
+    name: mkdocs
+    locale: es
+</code></pre>
+<p>Finally, run <code>mkdocs serve</code> to check out your new localized version of the theme.</p>
+<p>!!! Note
+    The build and release process takes care of compiling and distributing
+    all locales to end users so you only have to worry about contributing the
+    actual text translation <code>messages.po</code> files (the rest is ignored by git).</p>
+<pre><code>After you have finished testing your work, be sure to undo the change to
+the `locale` setting in the `mkdocs.yml` file before submitting your
+changes.
+</code></pre>
+<h2 id="updating-theme-documentation">Updating theme documentation</h2>
+<p>Update the lists of supported translations for each translated theme located at
+<a href="../../user-guide/choosing-your-theme/">Choosing your theme</a>
+(<code>docs/user-guide/choosing-your-theme.md</code>), in their <strong><code>locale</code></strong> options.</p>
+<h2 id="contributing-translations">Contributing translations</h2>
+<p>It is now time for you to <a href="../../about/contributing/">contribute</a> your nice work
+to the project. Thank you!</p>
+
+
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
+
+<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../../../../js/main.js"></script>
+<script src="../../../../search/main.js"></script>
+<script src="../../../../js/gitbook.min.js"></script>
+<script src="../../../../js/theme.min.js"></script>
+</body>
+</html>

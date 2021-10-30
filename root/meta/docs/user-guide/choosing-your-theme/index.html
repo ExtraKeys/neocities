@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Choosing your Theme - ExtraKeys</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.2.2, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../../../../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../../../../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../../../.." target="_blank" class="custom-link">ExtraKeys</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="">
+<a href="../../../..">Home</a>
+<li class="chapter" data-path="about/">
+<a href="../../../../about/">About</a>
+<li class="chapter" data-path="resources/">
+<a href="../../../../resources/">Resources</a>
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="choosing-your-theme">Choosing your Theme</h1>
+<p>Selecting and configuring a theme.</p>
+<hr />
+<p>MkDocs includes two built-in themes (<a href="#mkdocs">mkdocs</a> and
+<a href="#readthedocs">readthedocs</a>), as documented below. However, many <a href="#third-party-themes">third party
+themes</a> are available to choose from as well.</p>
+<p>To choose a theme, set the <a href="../configuration/#theme">theme</a> configuration option in your <code>mkdocs.yml</code>
+config file.</p>
+<pre><code class="language-yaml">theme:
+    name: readthedocs
+</code></pre>
+<h2 id="mkdocs">mkdocs</h2>
+<p>The default theme, which was built as a custom <a href="https://getbootstrap.com/">Bootstrap</a> theme, supports most
+every feature of MkDocs.</p>
+<p><img alt="mkdocs" src="../../img/mkdocs.png" /></p>
+<p>In addition to the default <a href="../configuration/#theme">theme configuration options</a>, the <code>mkdocs</code> theme
+supports the following options:</p>
+<ul>
+<li>
+<p><strong><code>highlightjs</code></strong>: Enables highlighting of source code in code blocks using
+  the <a href="https://highlightjs.org/">highlight.js</a> JavaScript library. Default: <code>True</code>.</p>
+</li>
+<li>
+<p><strong><code>hljs_style</code></strong>: The highlight.js library provides 79 different <a href="https://highlightjs.org/static/demo/">styles</a>
+  (color variations) for highlighting source code in code blocks. Set this to
+  the name of the desired style. Default: <code>github</code>.</p>
+</li>
+<li>
+<p><strong><code>hljs_languages</code></strong>: By default, highlight.js only supports 23 common
+  languages. List additional languages here to include support for them.</p>
+<pre><code>theme:
+    name: mkdocs
+    highlightjs: true
+    hljs_languages:
+        - yaml
+        - rust
+</code></pre>
+</li>
+<li>
+<p><strong><code>analytics</code></strong>: Defines configuration options for an analytics service.
+  Currently, only Google Analytics v4 is supported via the <code>gtag</code> option.</p>
+<ul>
+<li>
+<p><strong><code>gtag</code></strong>: To enable Google Analytics, set to a Google Analytics v4
+tracking ID, which uses the <code>G-</code> format. See Google&rsquo;s documentation to
+<a href="https://support.google.com/analytics/answer/9304153?hl=en&amp;ref_topic=9303319">Set up Analytics for a website and/or app (GA4)</a> or to
+<a href="https://support.google.com/analytics/answer/9744165?hl=en&amp;ref_topic=9303319">Upgrade to a Google Analytics 4 property</a>.</p>
+<pre><code>theme:
+    name: mkdocs
+    analytics:
+        gtag: G-ABC123
+</code></pre>
+<p>When set to the default (<code>null</code>) Google Analytics is disabled for the
+site.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>shortcuts</code></strong>: Defines keyboard shortcut keys.</p>
+<pre><code>theme:
+    name: mkdocs
+    shortcuts:
+        help: 191    # ?
+        next: 78     # n
+        previous: 80 # p
+        search: 83   # s
+</code></pre>
+<p>All values must be numeric key codes. It is best to use keys which are
+available on all keyboards. You may use <a href="https://keycode.info/">https://keycode.info/</a> to determine
+the key code for a given key.</p>
+<ul>
+<li>
+<p><strong><code>help</code></strong>: Display a help modal which lists the keyboard shortcuts.
+  Default: <code>191</code> (&quest;)</p>
+</li>
+<li>
+<p><strong><code>next</code></strong>: Navigate to the &ldquo;next&rdquo; page. Default: <code>78</code> (n)</p>
+</li>
+<li>
+<p><strong><code>previous</code></strong>: Navigate to the &ldquo;previous&rdquo; page. Default: <code>80</code> (p)</p>
+</li>
+<li>
+<p><strong><code>search</code></strong>: Display the search modal. Default: <code>83</code> (s)</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>navigation_depth</code></strong>: The maximum depth of the navigation tree in the
+  sidebar. Default: <code>2</code>.</p>
+</li>
+<li>
+<p><strong><code>nav_style</code></strong>: This adjusts the visual style for the top navigation bar; by
+  default, this is set to <code>primary</code> (the default), but it can also be set to
+  <code>dark</code> or <code>light</code>.</p>
+<pre><code>theme:
+    name: mkdocs
+    nav_style: dark
+</code></pre>
+</li>
+<li>
+<p><strong><code>locale</code></strong>{ #mkdocs-locale }: The locale (language/location) used to
+  build the theme. If your locale is not yet supported, it will fallback
+  to the default.</p>
+<p>The following locales are supported by this theme:</p>
+<ul>
+<li><code>en</code>: English (default)</li>
+<li><code>fr</code>: French</li>
+<li><code>es</code>: Spanish</li>
+</ul>
+<p>See the guide on <a href="../localizing-your-theme/">localizing your theme</a> for more information.</p>
+</li>
+</ul>
+<h2 id="readthedocs">readthedocs</h2>
+<p>A clone of the default theme used by the <a href="https://readthedocs.org/">Read the Docs</a> service, which offers
+the same restricted feature-set as its parent theme. Like its parent theme, only
+two levels of navigation are supported.</p>
+<p><img alt="ReadTheDocs" src="../../img/readthedocs.png" /></p>
+<p>In addition to the default <a href="../configuration/#theme">theme configuration options</a>, the <code>readthedocs</code>
+theme supports the following options:</p>
+<ul>
+<li>
+<p><strong><code>highlightjs</code></strong>: Enables highlighting of source code in code blocks using
+  the <a href="https://highlightjs.org/">highlight.js</a> JavaScript library. Default: <code>True</code>.</p>
+</li>
+<li>
+<p><strong><code>hljs_languages</code></strong>: By default, highlight.js only supports 23 common
+  languages. List additional languages here to include support for them.</p>
+<pre><code>theme:
+    name: readthedocs
+    highlightjs: true
+    hljs_languages:
+        - yaml
+        - rust
+</code></pre>
+</li>
+<li>
+<p><strong><code>analytics</code></strong>: Defines configuration options for an analytics service.
+  Currently, only Google Analytics v4 is supported via the <code>gtag</code> option.</p>
+<ul>
+<li>
+<p><strong><code>gtag</code></strong>: To enable Google Analytics, set to a Google Analytics v4
+tracking ID, which uses the <code>G-</code> format. See Google&rsquo;s documentation to
+<a href="https://support.google.com/analytics/answer/9304153?hl=en&amp;ref_topic=9303319">Set up Analytics for a website and/or app (GA4)</a> or to
+<a href="https://support.google.com/analytics/answer/9744165?hl=en&amp;ref_topic=9303319">Upgrade to a Google Analytics 4 property</a>.</p>
+<pre><code>theme:
+    name: readthedocs
+    analytics:
+        gtag: G-ABC123
+</code></pre>
+<p>When set to the default (<code>null</code>) Google Analytics is disabled for the</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>include_homepage_in_sidebar</code></strong>: Lists the homepage in the sidebar menu. As
+  MkDocs requires that the homepage be listed in the <code>nav</code> configuration
+  option, this setting allows the homepage to be included or excluded from
+  the sidebar. Note that the site name/logo always links to the homepage.
+  Default: <code>True</code>.</p>
+</li>
+<li>
+<p><strong><code>prev_next_buttons_location</code></strong>: One of <code>bottom</code>, <code>top</code>, <code>both</code> , or <code>none</code>.
+  Displays the “Next” and “Previous” buttons accordingly. Default: <code>bottom</code>.</p>
+</li>
+<li>
+<p><strong><code>navigation_depth</code></strong>: The maximum depth of the navigation tree in the
+  sidebar. Default: <code>4</code>.</p>
+</li>
+<li>
+<p><strong><code>collapse_navigation</code></strong>: Only include the page section headers in the
+  sidebar for the current page. Default: <code>True</code>.</p>
+</li>
+<li>
+<p><strong><code>titles_only</code></strong>: Only include page titles in the sidebar, excluding all
+  section headers for all pages. Default: <code>False</code>.</p>
+</li>
+<li>
+<p><strong><code>sticky_navigation</code></strong>: If True, causes the sidebar to scroll with the main
+  page content as you scroll the page. Default: <code>True</code>.</p>
+</li>
+<li>
+<p><strong><code>locale</code></strong>{ #readthedocs-locale }: The locale (language/location) used to
+  build the theme. If your locale is not yet supported, it will fallback
+  to the default.</p>
+<p>The following locales are supported by this theme:</p>
+<ul>
+<li><code>en</code>: English (default)</li>
+<li><code>fr</code>: French</li>
+<li><code>es</code>: Spanish</li>
+</ul>
+<p>See the guide on <a href="../localizing-your-theme/">localizing your theme</a> for more information.</p>
+</li>
+</ul>
+<h2 id="third-party-themes">Third Party Themes</h2>
+<p>A list of third party themes can be found in the MkDocs <a href="https://github.com/mkdocs/mkdocs/wiki/MkDocs-Themes">community wiki</a>. If you
+have created your own, please feel free to add it to the list.</p>
+
+
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
+
+<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../../../../js/main.js"></script>
+<script src="../../../../search/main.js"></script>
+<script src="../../../../js/gitbook.min.js"></script>
+<script src="../../../../js/theme.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>MkDocs Installation - ExtraKeys</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.2.2, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../../../../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../../../../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../../../.." target="_blank" class="custom-link">ExtraKeys</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="">
+<a href="../../../..">Home</a>
+<li class="chapter" data-path="about/">
+<a href="../../../../about/">About</a>
+<li class="chapter" data-path="resources/">
+<a href="../../../../resources/">Resources</a>
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="mkdocs-installation">MkDocs Installation</h1>
+<p>A detailed guide.</p>
+<hr />
+<h2 id="requirements">Requirements</h2>
+<p>MkDocs requires a recent version of <a href="https://www.python.org/">Python</a> and the the Python package
+manager, <a href="https://pip.readthedocs.io/en/stable/installing/">pip</a>, to be installed on your system.</p>
+<p>You can check if you already have these installed from the command line:</p>
+<pre><code class="language-bash">$ python --version
+Python 3.8.2
+$ pip --version
+pip 20.0.2 from /usr/local/lib/python3.8/site-packages/pip (python 3.8)
+</code></pre>
+<p>If you already have those packages installed, you may skip down to <a href="#installing-mkdocs">Installing
+MkDocs</a>.</p>
+<h3 id="installing-python">Installing Python</h3>
+<p>Install <a href="https://www.python.org/">Python</a> using your package manager of choice, or by downloading an
+installer appropriate for your system from <a href="https://www.python.org/downloads/">python.org</a> and running it.</p>
+<p>!!! Note</p>
+<pre><code>If you are installing Python on Windows, be sure to check the box to have
+Python added to your PATH if the installer offers such an option (it's
+normally off by default).
+
+![Add Python to PATH](../img/win-py-install.png)
+</code></pre>
+<h3 id="installing-pip">Installing pip</h3>
+<p>If you&rsquo;re using a recent version of Python, the Python package manager, <a href="https://pip.readthedocs.io/en/stable/installing/">pip</a>,
+is most likely installed by default. However, you may need to upgrade pip to the
+lasted version:</p>
+<pre><code class="language-bash">pip install --upgrade pip
+</code></pre>
+<p>If you need to install pip for the first time, download <a href="https://bootstrap.pypa.io/get-pip.py">get-pip.py</a>.
+Then run the following command to install it:</p>
+<pre><code class="language-bash">python get-pip.py
+</code></pre>
+<h2 id="installing-mkdocs">Installing MkDocs</h2>
+<p>Install the <code>mkdocs</code> package using pip:</p>
+<pre><code class="language-bash">pip install mkdocs
+</code></pre>
+<p>You should now have the <code>mkdocs</code> command installed on your system. Run <code>mkdocs
+--version</code> to check that everything worked okay.</p>
+<pre><code class="language-bash">$ mkdocs --version
+mkdocs, version 1.2.0 from /usr/local/lib/python3.8/site-packages/mkdocs (Python 3.8)
+</code></pre>
+<p>!!! Note
+    If you would like manpages installed for MkDocs, the <a href="https://github.com/click-contrib/click-man">click-man</a> tool can
+    generate and install them for you. Simply run the following two commands:</p>
+<pre><code>    pip install click-man
+    click-man --target path/to/man/pages mkdocs
+
+See the [click-man documentation] for an explanation of why manpages are
+not automatically generated and installed by pip.
+</code></pre>
+<p>!!! Note
+    If you are using Windows, some of the above commands may not work
+    out-of-the-box.</p>
+<pre><code>A quick solution may be to preface every Python command with `python -m`
+like this:
+
+    python -m pip install mkdocs
+    python -m mkdocs
+
+For a more permanent solution, you may need to edit your `PATH` environment
+variable to include the `Scripts` directory of your Python installation.
+Recent versions of Python include a script to do this for you. Navigate to
+your Python installation directory (for example `C:\Python38\`), open the
+`Tools`, then `Scripts` folder, and run the `win_add2path.py` file by double
+clicking on it. Alternatively, you can download the [script][a2p] and run it
+(`python win_add2path.py`).
+</code></pre>
+
+
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
+
+<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../../../../js/main.js"></script>
+<script src="../../../../search/main.js"></script>
+<script src="../../../../js/gitbook.min.js"></script>
+<script src="../../../../js/theme.min.js"></script>
+</body>
+</html>
